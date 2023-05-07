@@ -1,7 +1,3 @@
-# jastonitas.github.io
-Software &amp; data technology blog
-
-<!DOCTYPE html>
 <html>
 <head>
 	<title>Tutorial de consumo de datos de un sensor en Arduino Leonardo hacia Atlas MongoDB</title>
@@ -11,8 +7,7 @@ Software &amp; data technology blog
 	
 	<p>En este tutorial, aprenderás cómo consumir los datos de un sensor en Arduino Leonardo y almacenarlos en una base de datos en línea, como Atlas MongoDB. A continuación, se presenta el código básico necesario para realizar la conexión entre el sensor, Arduino y la base de datos:</p>
 
-	<pre>
-		<code>
+	{% highlight c++ %}
 			// Código de conexión a Atlas MongoDB
 			const char* host = "cluster0-shard-00-00.mongodb.net";
 			const char* user = "user";
@@ -39,8 +34,7 @@ Software &amp; data technology blog
 			} else {
 				Serial.println("Error inserting data");
 			}
-		</code>
-	</pre>
+	{% endhighlight %}
 
 	<p>Este es solo un ejemplo básico de cómo se puede realizar la conexión y el almacenamiento de datos en línea con Arduino Leonardo y Atlas MongoDB. Para obtener más información detallada sobre cómo consumir datos de un sensor en Arduino y almacenarlos en una base de datos en línea, puedes seguir leyendo el tutorial completo en mi sitio web o en mi repositorio de GitHub.</p>
 	
