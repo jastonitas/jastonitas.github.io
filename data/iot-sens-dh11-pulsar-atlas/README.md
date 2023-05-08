@@ -9,13 +9,13 @@
 		En este articulo, revisaremos el consumo los datos de un sensor en Arduino Leonardo y almacenarlos en una base de datos en línea, como Atlas MongoDB. Vamos con ello.
 	</p>	
 	<p>
-		Paso 1: Antes que nada, necesitamos realizar las conexiones en nuestra placa arduino, en este caso estamos usando un Arduino Leonardo, para la prueba usaremos un sensor de temperatura y humedad de tipo DHT11, el esquema se muestra a continuación:
+		<b>Paso 1:</b> Antes que nada, necesitamos realizar las conexiones en nuestra placa arduino, en este caso estamos usando un Arduino Leonardo, para la prueba usaremos un sensor de temperatura y humedad de tipo DHT11, el esquema se muestra a continuación:
 	</p>
 	<p>
 		<img src="/multimedia/conexion%20arduino%20y%20dht11.jpg" alt="Sensor DH11" class="center">
 	</p>
 	<p>
-		Paso 2: Acto seguido debemos instalar Arduino IDE (en caso utilicemos Linux/Ubuntu puede que sea necesario autorizar a tu usuario para leer la cola del Puerto Serial usado por la conexión de Arduino). Una vez establecida la conexión de la placa arduino y el IDE, compilaremos el siguiente código fuente:
+		<b>Paso 2:</b> Acto seguido debemos instalar Arduino IDE (en caso utilicemos Linux/Ubuntu puede que sea necesario autorizar a tu usuario para leer la cola del Puerto Serial usado por la conexión de Arduino). Una vez establecida la conexión de la placa arduino y el IDE, compilaremos el siguiente código fuente:
 	</p>
 
 {% highlight c++  linenos %}
@@ -69,11 +69,11 @@ void loop() {
 	</p>
 
 	<p>
-		Paso 3: Ahora instalaremos Apache Pulsar, instrucciones de instalación las podemos encontrar en la página oficial de la herramienta: https://pulsar.apache.org/docs/3.0.x/getting-started-standalone/ , recomiendo realiar una instalación simple standalone para esta prueba, mientras escribía este artículo realicé una instalación en Docker, sin embargo puede presentar problemas por ejemplo con contenedores de PostgreSQL aún un poco complicados de resolver.
+		<b>Paso 3:</b> Ahora instalaremos Apache Pulsar, instrucciones de instalación las podemos encontrar en la página oficial de la herramienta: https://pulsar.apache.org/docs/3.0.x/getting-started-standalone/ , recomiendo realiar una instalación simple standalone para esta prueba, mientras escribía este artículo realicé una instalación en Docker, sin embargo puede presentar problemas por ejemplo con contenedores de PostgreSQL aún un poco complicados de resolver.
 	</p>
 	
 	<p>
-		Paso 4: Usaremos un proyecto Java, nos apoyaremos en SpringBoot y el módulo para pulsar y mongodb, pongo a disposición el código de este proyecto aquí: <a href="https://github.com/jastonitas/jastonitas.github.io/tree/main/data/iot-sens-dh11-pulsar-atlas/code">SpringBoot Pulsar Project</a> veamos a continuación la clase en la que recuperamos los datos que van llegando al puerto serial gracias al código ejecutandose en nuestra placa Arduino:
+		<b>Paso 4:</b> Usaremos un proyecto Java, nos apoyaremos en SpringBoot y el módulo para pulsar y mongodb, pongo a disposición el código de este proyecto aquí: <a href="https://github.com/jastonitas/jastonitas.github.io/tree/main/data/iot-sens-dh11-pulsar-atlas/code">SpringBoot Pulsar Project</a> veamos a continuación la clase en la que recuperamos los datos que van llegando al puerto serial gracias al código ejecutandose en nuestra placa Arduino:
 	</p>
 
 {% highlight java linenos %}
@@ -131,7 +131,7 @@ public class SerialDataProducer {
 {% endhighlight %}
 
 	<p>
-		Paso 5: Para este caso levantaremos un listener en el mismo proyecto, en situaciones reales, deberían ser dos instancias separadas con manejos de carga independiente, el siguinete listener se activa cada vez que pulsar recibe un mensaje (gracias al producer descrito en el paso anterior) y lo persiste en una instancia de Atlas de mongo DB:
+		<b>Paso 5:</b> Para este caso levantaremos un listener en el mismo proyecto, en situaciones reales, deberían ser dos instancias separadas con manejos de carga independiente, el siguinete listener se activa cada vez que pulsar recibe un mensaje (gracias al producer descrito en el paso anterior) y lo persiste en una instancia de Atlas de mongo DB:
 	</p>
 	
 {% highlight java linenos %}
@@ -174,13 +174,13 @@ public class SerialDataListener {
 
 	<p>
 		Si los datos son registrados correctamente, en Atlas MongoDB podremos apreciar los datos aproximadamente como sigue:
-		<img src="/multimedia/mongodb-image.png" alt="MongoDB Data" class="center">
 	</p>
+	<img src="/multimedia/mongodb-image.png" alt="MongoDB Data" class="center">
 	
 	<p>
-		Paso 6: Una vez que los datos están siendo registrados en MongoDB podemos usarlos para consumirlos desde cualquier cliente compatible con MongoDB, el enfoque más simple puede consistir en una actualización en un intervalo de minutos, para lo cual para este caso usaremos Atlas Charts, en una próxima actualización detallaremos la generación de los Atlas Charts, adjunto imagen de cómo lucen los reportes de Temperatura y Humedad:
-		<img src="/multimedia/mongo-atlas-charts.png" alt="Atlas MongoDB Charts" class="center">
+		<b>Paso 6:</b> Una vez que los datos están siendo registrados en MongoDB podemos usarlos para consumirlos desde cualquier cliente compatible con MongoDB, el enfoque más simple puede consistir en una actualización en un intervalo de minutos, para lo cual para este caso usaremos Atlas Charts, en una próxima actualización detallaremos la generación de los Atlas Charts, adjunto imagen de cómo lucen los reportes de Temperatura y Humedad:
 	</p>
+	<img src="/multimedia/mongo-atlas-charts.png" alt="Atlas MongoDB Charts" class="center">
 	
 </body>
 </html>
