@@ -183,7 +183,7 @@ public class SerialDataListener {
 	<img src="/multimedia/mongo-atlas-charts.png" alt="Atlas MongoDB Charts" class="center">
 	
 	<p>
-		¡Gracias por leer este artículo hasta aquí! Espero que haya sido útil para ti.
+		¡Gracias por leer este artículo hasta aquí! Espero que haya sido útil para ti. Si tienes alguna consulta acerca, puedes escribirme un comentario en la siguiente publicación: <a href="https://www.linkedin.com/posts/jastonitas_dataengineering-data-java-activity-7061258386813677568-awd0?utm_source=share&utm_medium=member_desktop">Artículo LinkedIn.</a>
 	</p>
 </body>
 </html>
