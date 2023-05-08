@@ -48,7 +48,10 @@ void loop() {
 }
 {% endhighlight %}
 
-	<p>Este es solo un ejemplo básico de cómo se puede realizar la conexión y el almacenamiento de datos en línea con Arduino Leonardo y Atlas MongoDB. Para obtener más información detallada sobre cómo consumir datos de un sensor en Arduino y almacenarlos en una base de datos en línea, puedes seguir leyendo el tutorial completo en mi sitio web o en mi repositorio de GitHub.</p>
+	<p>
+		Este
+		<a href="/data/iot-sens-dh11-pulsar-atlas">IoT Arduino Sensor, Pulsar, MongoDB, Atlas and NR Reports</a>
+	</p>
 	
 	<p>¡Gracias por leer este tutorial! Espero que haya sido útil para ti.</p>
 </body>
