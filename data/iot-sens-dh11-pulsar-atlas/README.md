@@ -69,15 +69,11 @@ void loop() {
 	</p>
 
 	<p>
-		Paso 3: Ahora instalaremos Pulsar, instrucciones de instalación las podemos encontrar en la página oficial de la herramienta: https://pulsar.apache.org/docs/3.0.x/getting-started-standalone/ , recomiendo realiar una instalación simple standalone para esta prueba, mientras escribía este artículo realicé una instalación en Docker, sin embargo puede presentar problemas por ejemplo con contenedores de PostgreSQL aún un poco complicados de resolver.
+		Paso 3: Ahora instalaremos Apache Pulsar, instrucciones de instalación las podemos encontrar en la página oficial de la herramienta: https://pulsar.apache.org/docs/3.0.x/getting-started-standalone/ , recomiendo realiar una instalación simple standalone para esta prueba, mientras escribía este artículo realicé una instalación en Docker, sin embargo puede presentar problemas por ejemplo con contenedores de PostgreSQL aún un poco complicados de resolver.
 	</p>
 	
 	<p>
-		Paso 4: Ahora instalaremos Pulsar, instrucciones de instalación las podemos encontrar en la página oficial de la herramienta: https://pulsar.apache.org/docs/3.0.x/getting-started-standalone/ , recomiendo realiar una instalación simple standalone para esta prueba, mientras escribía este artículo realicé una instalación en Docker, sin embargo puede presentar problemas por ejemplo con contenedores de PostgreSQL aún un poco complicados de resolver.
-	</p>
-	
-	<p>
-		Paso 5: Usaremos un proyecto Java, nos apoyaremos en SpringBoot y el módulo para pulsar y mongodb, pongo a disposición el código de este proyecto aquí: <a href="https://github.com/jastonitas/jastonitas.github.io/tree/main/data/iot-sens-dh11-pulsar-atlas/code">SpringBoot Pulsar Project</a> veamos a continuación la clase en la que recuperamos los datos que van llegando al puerto serial:
+		Paso 4: Usaremos un proyecto Java, nos apoyaremos en SpringBoot y el módulo para pulsar y mongodb, pongo a disposición el código de este proyecto aquí: <a href="https://github.com/jastonitas/jastonitas.github.io/tree/main/data/iot-sens-dh11-pulsar-atlas/code">SpringBoot Pulsar Project</a> veamos a continuación la clase en la que recuperamos los datos que van llegando al puerto serial gracias al código ejecutandose en nuestra placa Arduino:
 	</p>
 
 {% highlight java linenos %}
@@ -133,6 +129,10 @@ public class SerialDataProducer {
     }
 }
 {% endhighlight %}
+
+	<p>
+		Paso 5: Para este caso levantaremos un listener en el mismo proyecto, en situaciones reales, deberían ser dos instancias separadas con manejos de carga independiente, el siguinete listener se activa cada vez que pulsar recibe un mensaje (gracias al producer descrito en el paso anterior) y lo persiste en una instancia de Atlas de mongo DB
+	</p>
 
 </body>
 </html>
