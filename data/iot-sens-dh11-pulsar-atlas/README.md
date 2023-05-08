@@ -9,10 +9,13 @@
 		En este articulo, revisaremos el consumo los datos de un sensor en Arduino Leonardo y almacenarlos en una base de datos en línea, como Atlas MongoDB. Vamos con ello.
 	</p>	
 	<p>
-		Paso 1: Antes que nada, necesitamos realizar las conexiones en nuestra placa arduino, en este caso estamos usando un Arduino Leonardo, para la prueba usaremos un sensor de temperatura y humedad de tipo DHT11
+		Paso 1: Antes que nada, necesitamos realizar las conexiones en nuestra placa arduino, en este caso estamos usando un Arduino Leonardo, para la prueba usaremos un sensor de temperatura y humedad de tipo DHT11, el esquema se muestra a continuación:
 	</p>
 	<p>
 		<img src="/multimedia/conexion%20arduino%20y%20dht11.jpg" alt="Sensor DH11" class="center">
+	</p>
+	<p>
+		Paso 2: Acto seguido debemos instalar Arduino IDE (en caso utilicemos Linux/Ubuntu puede que sea necesario autorizar a tu usuario para leer la cola del Puerto Serial usado por la conexión de Arduino). Una vez establecida la conexión de la placa arduino y el IDE, compilaremos el siguiente código fuente:
 	</p>
 
 {% highlight c++  linenos %}
@@ -51,6 +54,18 @@ void loop() {
 }
 {% endhighlight %}
 
+	<p>
+		Paso 3: Ahora compilamos y descargamos el código a arduino, debemos empezar a notar datos en el Monitor Serial de Arduino IDE:
+		<br/>
+		03:02:52.381 -> {"temperatura":{"valor":26.2,"medida":"%"},"humedad":{"valor":71,"medida":"grados","tipo":"C"}}
+		03:02:54.408 -> {"temperatura":{"valor":26.2,"medida":"%"},"humedad":{"valor":71,"medida":"grados","tipo":"C"}}
+		03:02:56.430 -> {"temperatura":{"valor":26.3,"medida":"%"},"humedad":{"valor":71,"medida":"grados","tipo":"C"}}
+		03:02:58.481 -> {"temperatura":{"valor":26.3,"medida":"%"},"humedad":{"valor":71,"medida":"grados","tipo":"C"}}
+		03:03:00.505 -> {"temperatura":{"valor":26.3,"medida":"%"},"humedad":{"valor":71,"medida":"grados","tipo":"C"}}
+		03:03:02.523 -> {"temperatura":{"valor":26.3,"medida":"%"},"humedad":{"valor":71,"medida":"grados","tipo":"C"}}
+		03:03:04.543 -> {"temperatura":{"valor":26.4,"medida":"%"},"humedad":{"valor":71,"medida":"grados","tipo":"C"}}
+		03:03:06.611 -> {"temperatura":{"valor":26.3,"medida":"%"},"humedad":{"valor":71,"medida":"grados","tipo":"C"}}
+	</p>
 
 </body>
 </html>
