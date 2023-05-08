@@ -75,5 +75,64 @@ void loop() {
 	<p>
 		Paso 4: Ahora instalaremos Pulsar, instrucciones de instalación las podemos encontrar en la página oficial de la herramienta: https://pulsar.apache.org/docs/3.0.x/getting-started-standalone/ , recomiendo realiar una instalación simple standalone para esta prueba, mientras escribía este artículo realicé una instalación en Docker, sin embargo puede presentar problemas por ejemplo con contenedores de PostgreSQL aún un poco complicados de resolver.
 	</p>
+	
+	<p>
+		Paso 5: Usaremos un proyecto Java, nos apoyaremos en SpringBoot y el módulo para pulsar y mongodb, pongo a disposición el código de este proyecto aquí: <a href="https://github.com/jastonitas/jastonitas.github.io/tree/main/data/iot-sens-dh11-pulsar-atlas/code">SpringBoot Pulsar Project</a> veamos a continuación la clase en la que recuperamos los datos que van llegando al puerto serial:
+	</p>
+
+{% highlight java linenos %}
+package com.datafirst;
+
+import com.fazecast.jSerialComm.SerialPort;
+import org.apache.pulsar.client.api.MessageId;
+import org.apache.pulsar.client.api.PulsarClientException;
+import org.springframework.pulsar.core.PulsarTemplate;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
+
+import java.io.InputStream;
+
+@Component
+public class SerialDataProducer {
+    PulsarTemplate pulsarTemplate;
+
+    public SerialDataProducer(final PulsarTemplate pulsarTemplate) {
+        this.pulsarTemplate = pulsarTemplate;
+    }
+
+    @Async
+    public void readAndProduce() {
+        SerialPort comPort = SerialPort.getCommPorts()[1];
+        comPort.openPort();
+        comPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 0, 0);
+        InputStream in = comPort.getInputStream();
+
+        try {
+            StringBuilder sb = new StringBuilder();
+            //for (int j = 0; j < 1000; ++j) {
+            while (true) {
+                char ch = (char) in.read();
+                if (ch == '\n') {
+                    sendPulsarMessage(sb.toString());
+                    sb = new StringBuilder();
+                } else {
+                    sb.append(ch);
+                }
+            }
+            //in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        comPort.closePort();
+    }
+
+    public void sendPulsarMessage(final String message) throws PulsarClientException {
+        System.out.println("Sent: " + message);
+        MessageId send = pulsarTemplate.send("my-topic", message);
+    }
+}
+{% endhighlight %}
+
 </body>
 </html>
