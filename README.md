@@ -3,36 +3,48 @@
 	<title>Tutorial de consumo de datos de un sensor en Arduino Leonardo hacia Atlas MongoDB</title>
 </head>
 <body>
-	<h1>Tutorial de consumo de datos de un sensor en Arduino Leonardo hacia Atlas MongoDB</h1>
+	<h1>IoT: Sensorización y consumo de datos con Arduino, Apache Pulsar MongoDB y Reporting near Real Time</h1>
 	
-	<p>En este tutorial, aprenderás cómo consumir los datos de un sensor en Arduino Leonardo y almacenarlos en una base de datos en línea, como Atlas MongoDB. A continuación, se presenta el código básico necesario para realizar la conexión entre el sensor, Arduino y la base de datos:</p>
+	<p>
+		En este articulo, revisaremos el consumo los datos de un sensor en Arduino Leonardo y almacenarlos en una base de datos en línea, como Atlas MongoDB. Vamos con ello.
+	</p>	
+	<p>
+		Paso 1: Antes que nada, necesitamos realizar las conexiones en nuestra placa arduino, en este caso estamos usando un Arduino Leonardo, para la prueba usaremos un sensor de temperatura y humedad de tipo DHT11
+	</p>
 
-{% highlight c++ %}
-// Código de conexión a Atlas MongoDB
-const char* host = "cluster0-shard-00-00.mongodb.net";
-const char* user = "user";
-const char* password = "password";
-const char* database = "database";
-const char* collection = "collection";
-mongocxx::uri uri("mongodb+srv://" + user + ":" + password + "@" + host + "/" + database + "?retryWrites=true&w=majority");
-mongocxx::client conn(uri);
-auto db = conn[database];
-auto coll = db[collection];
+{% highlight c++  linenos %}
+#include "DHT.h"
+#include <ArduinoJson.h>
 
-// Código de lectura de sensor en Arduino Leonardo
-int sensorValue = analogRead(A0);
-float voltage = sensorValue * (5.0 / 1023.0);
-float temperature = (voltage - 0.5) * 100;
-Serial.println("Temperature: " + String(temperature) + "°C");
+#define DHTPIN 2     // Pin donde está conectado el sensor
 
-// Código de inserción de datos en la base de datos
-bsoncxx::builder::stream::document document{};
-document << "temperature" << temperature;
-auto result = coll.insert_one(document.view());
-if (result) {
-	Serial.println("Data inserted successfully");
-} else {
-	Serial.println("Error inserting data");
+#define DHTTYPE DHT11   // Descomentar si se usa el DHT 11
+//#define DHTTYPE DHT22   // Sensor DHT22
+
+DHT dht(DHTPIN, DHTTYPE);
+
+void setup() {
+  Serial.begin(9600);
+  Serial.println("Iniciando...");
+  dht.begin();
+}
+void loop() {
+  delay(2000);
+  float h = dht.readHumidity(); //Leemos la Humedad
+  float t = dht.readTemperature(); //Leemos la temperatura en grados Celsius
+
+  DynamicJsonDocument json(512);
+  JsonObject temperatura = json.createNestedObject("temperatura");
+  temperatura["valor"] = t;
+  temperatura["medida"] = "%";
+  JsonObject humedad = json.createNestedObject("humedad");
+  humedad["valor"] = h;
+  humedad["medida"] = "grados";
+  humedad["tipo"] = "C";
+
+  //--------Enviamos las lecturas por el puerto serial-------------
+  serializeJson(json, Serial);
+  Serial.println();
 }
 {% endhighlight %}
 
