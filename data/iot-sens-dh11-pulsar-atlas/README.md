@@ -57,14 +57,14 @@ void loop() {
 	<p>
 		Paso 3: Ahora compilamos y descargamos el código a arduino, debemos empezar a notar datos en el Monitor Serial de Arduino IDE:
 		<pre>
-		03:02:52.381 -> {"temperatura":{"valor":26.2,"medida":"%"},"humedad":{"valor":71,"medida":"grados","tipo":"C"}}
-		03:02:54.408 -> {"temperatura":{"valor":26.2,"medida":"%"},"humedad":{"valor":71,"medida":"grados","tipo":"C"}}
-		03:02:56.430 -> {"temperatura":{"valor":26.3,"medida":"%"},"humedad":{"valor":71,"medida":"grados","tipo":"C"}}
-		03:02:58.481 -> {"temperatura":{"valor":26.3,"medida":"%"},"humedad":{"valor":71,"medida":"grados","tipo":"C"}}
-		03:03:00.505 -> {"temperatura":{"valor":26.3,"medida":"%"},"humedad":{"valor":71,"medida":"grados","tipo":"C"}}
-		03:03:02.523 -> {"temperatura":{"valor":26.3,"medida":"%"},"humedad":{"valor":71,"medida":"grados","tipo":"C"}}
-		03:03:04.543 -> {"temperatura":{"valor":26.4,"medida":"%"},"humedad":{"valor":71,"medida":"grados","tipo":"C"}}
-		03:03:06.611 -> {"temperatura":{"valor":26.3,"medida":"%"},"humedad":{"valor":71,"medida":"grados","tipo":"C"}}
+	03:02:52.381 -> {"temperatura":{"valor":26.2,"medida":"%"},"humedad":{"valor":71,"medida":"grados","tipo":"C"}}
+	03:02:54.408 -> {"temperatura":{"valor":26.2,"medida":"%"},"humedad":{"valor":71,"medida":"grados","tipo":"C"}}
+	03:02:56.430 -> {"temperatura":{"valor":26.3,"medida":"%"},"humedad":{"valor":71,"medida":"grados","tipo":"C"}}
+	03:02:58.481 -> {"temperatura":{"valor":26.3,"medida":"%"},"humedad":{"valor":71,"medida":"grados","tipo":"C"}}
+	03:03:00.505 -> {"temperatura":{"valor":26.3,"medida":"%"},"humedad":{"valor":71,"medida":"grados","tipo":"C"}}
+	03:03:02.523 -> {"temperatura":{"valor":26.3,"medida":"%"},"humedad":{"valor":71,"medida":"grados","tipo":"C"}}
+	03:03:04.543 -> {"temperatura":{"valor":26.4,"medida":"%"},"humedad":{"valor":71,"medida":"grados","tipo":"C"}}
+	03:03:06.611 -> {"temperatura":{"valor":26.3,"medida":"%"},"humedad":{"valor":71,"medida":"grados","tipo":"C"}}
 		</pre>
 	</p>
 
