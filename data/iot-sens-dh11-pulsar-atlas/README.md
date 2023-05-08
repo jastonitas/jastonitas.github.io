@@ -131,8 +131,56 @@ public class SerialDataProducer {
 {% endhighlight %}
 
 	<p>
-		Paso 5: Para este caso levantaremos un listener en el mismo proyecto, en situaciones reales, deberían ser dos instancias separadas con manejos de carga independiente, el siguinete listener se activa cada vez que pulsar recibe un mensaje (gracias al producer descrito en el paso anterior) y lo persiste en una instancia de Atlas de mongo DB
+		Paso 5: Para este caso levantaremos un listener en el mismo proyecto, en situaciones reales, deberían ser dos instancias separadas con manejos de carga independiente, el siguinete listener se activa cada vez que pulsar recibe un mensaje (gracias al producer descrito en el paso anterior) y lo persiste en una instancia de Atlas de mongo DB:
 	</p>
+	
+{% highlight java linenos %}
+package com.datafirst;
 
+import com.datafirst.dto.ClimateMeasureCanonical;
+import com.datafirst.entity.ClimateMeasure;
+import com.datafirst.entity.ClimateMeasureRepository;
+import com.datafirst.util.AppBeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.pulsar.annotation.PulsarListener;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+@Component
+public class SerialDataListener {
+
+    private ClimateMeasureRepository climateMeasureRepository;
+
+    @Autowired
+    public SerialDataListener(final ClimateMeasureRepository climateMeasureRepository) {
+        this.climateMeasureRepository = climateMeasureRepository;
+    }
+
+    @PulsarListener(subscriptionName = "my-sub", topics = "my-topic")
+    void listen(final String message) {
+        try {
+            ClimateMeasureCanonical climateMeasureCanonical = AppBeanUtils.deserializeToClimateMeasureCanonical(message);
+            List<ClimateMeasure> measures = AppBeanUtils.dtoToClimateMeasure(climateMeasureCanonical);
+            measures.stream().forEach(measure -> climateMeasureRepository.save(measure));
+            System.out.println("listened and saved!");
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
+
+}
+{% endhighlight %}
+
+	<p>
+		Si los datos son registrados correctamente, en Atlas MongoDB podremos apreciar los datos aproximadamente como sigue:
+		<img src="/multimedia/mongodb-image.png" alt="MongoDB Data" class="center">
+	</p>
+	
+	<p>
+		Paso 6: Una vez que los datos están siendo registrados en MongoDB podemos usarlos para consumirlos desde cualquier cliente compatible con MongoDB, el enfoque más simple puede consistir en una actualización en un intervalo de minutos, para lo cual para este caso usaremos Atlas Charts, en una próxima actualización detallaremos la generación de los Atlas Charts, adjunto imagen de cómo lucen los reportes de Temperatura y Humedad:
+		<img src="/multimedia/mongo-atlas-charts.png" alt="Atlas MongoDB Charts" class="center">
+	</p>
+	
 </body>
 </html>
