@@ -11,6 +11,9 @@
 	<p>
 		Paso 1: Antes que nada, necesitamos realizar las conexiones en nuestra placa arduino, en este caso estamos usando un Arduino Leonardo, para la prueba usaremos un sensor de temperatura y humedad de tipo DHT11
 	</p>
+	<p>
+		<img src="/multimedia/conexion%20arduino%20y%20dht11.jpg" alt="Girl in a jacket">
+	</p>
 
 {% highlight c++  linenos %}
 #include "DHT.h"
@@ -48,11 +51,6 @@ void loop() {
 }
 {% endhighlight %}
 
-	<p>
-		Este
-		<a href="/data/iot-sens-dh11-pulsar-atlas">IoT Arduino Sensor, Pulsar, MongoDB, Atlas and NR Reports</a>
-	</p>
-	
-	<p>¡Gracias por leer este tutorial! Espero que haya sido útil para ti.</p>
+
 </body>
 </html>
