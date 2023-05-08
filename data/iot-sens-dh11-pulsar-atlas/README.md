@@ -182,5 +182,8 @@ public class SerialDataListener {
 	</p>
 	<img src="/multimedia/mongo-atlas-charts.png" alt="Atlas MongoDB Charts" class="center">
 	
+	<p>
+		¡Gracias por leer este artículo hasta aquí! Espero que haya sido útil para ti.
+	</p>
 </body>
 </html>
