@@ -68,5 +68,12 @@ void loop() {
 		</pre>
 	</p>
 
+	<p>
+		Paso 3: Ahora instalaremos Pulsar, instrucciones de instalación las podemos encontrar en la página oficial de la herramienta: https://pulsar.apache.org/docs/3.0.x/getting-started-standalone/ , recomiendo realiar una instalación simple standalone para esta prueba, mientras escribía este artículo realicé una instalación en Docker, sin embargo puede presentar problemas por ejemplo con contenedores de PostgreSQL aún un poco complicados de resolver.
+	</p>
+	
+	<p>
+		Paso 4: Ahora instalaremos Pulsar, instrucciones de instalación las podemos encontrar en la página oficial de la herramienta: https://pulsar.apache.org/docs/3.0.x/getting-started-standalone/ , recomiendo realiar una instalación simple standalone para esta prueba, mientras escribía este artículo realicé una instalación en Docker, sin embargo puede presentar problemas por ejemplo con contenedores de PostgreSQL aún un poco complicados de resolver.
+	</p>
 </body>
 </html>
