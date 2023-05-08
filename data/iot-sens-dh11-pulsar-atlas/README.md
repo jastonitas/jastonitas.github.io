@@ -12,7 +12,7 @@
 		Paso 1: Antes que nada, necesitamos realizar las conexiones en nuestra placa arduino, en este caso estamos usando un Arduino Leonardo, para la prueba usaremos un sensor de temperatura y humedad de tipo DHT11
 	</p>
 	<p>
-		<img src="/multimedia/conexion%20arduino%20y%20dht11.jpg" alt="Girl in a jacket">
+		<img src="/multimedia/conexion%20arduino%20y%20dht11.jpg" alt="Sensor DH11" class="center">
 	</p>
 
 {% highlight c++  linenos %}
